@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/d_4.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        })
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+            if (bounds_group.getLayers().length) {
+                map.fitBounds(bounds_group.getBounds());
+            }
+        }
+        map.createPane('pane__0');
+        map.getPane('pane__0').style.zIndex = 400;
+        var layer__0 = L.tileLayer('https://t1.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TileCol={x}&TileRow={y}&TileMatrix={z}&tk=d96811b77f1c8eddab7604f946c31a37', {
+            pane: 'pane__0',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 1,
+            maxNativeZoom: 18
+        });
+        layer__0;
+        map.addLayer(layer__0);
+        map.createPane('pane__1');
+        map.getPane('pane__1').style.zIndex = 401;
+        var layer__1 = L.tileLayer('https://t1.tianditu.gov.cn/cia_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=cia&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TileCol={x}&TileRow={y}&TileMatrix={z}&tk=d96811b77f1c8eddab7604f946c31a37', {
+            pane: 'pane__1',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 1,
+            maxNativeZoom: 18
+        });
+        layer__1;
+        map.addLayer(layer__1);
+        map.createPane('pane__2');
+        map.getPane('pane__2').style.zIndex = 402;
+        var layer__2 = L.tileLayer('https://t1.tianditu.gov.cn/vec_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=vec&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TileCol={x}&TileRow={y}&TileMatrix={z}&tk=d96811b77f1c8eddab7604f946c31a37', {
+            pane: 'pane__2',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 1,
+            maxNativeZoom: 18
+        });
+        layer__2;
+        map.addLayer(layer__2);
+        map.createPane('pane__3');
+        map.getPane('pane__3').style.zIndex = 403;
+        var layer__3 = L.tileLayer('https://t5.tianditu.gov.cn/cva_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=cva&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TileCol={x}&TileRow={y}&TileMatrix={z}&tk=d96811b77f1c8eddab7604f946c31a37', {
+            pane: 'pane__3',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 1,
+            maxNativeZoom: 18
+        });
+        layer__3;
+        map.addLayer(layer__3);
+        function pop_d_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['field_4'] !== null ? autolinker.link(feature.properties['field_4'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_d_4_0(feature) {
+            if (feature.properties['field_4'] >= 0.165027 && feature.properties['field_4'] <= 0.338520 ) {
+                return {
+                pane: 'pane_d_4',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(26,150,65,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['field_4'] >= 0.338520 && feature.properties['field_4'] <= 0.466829 ) {
+                return {
+                pane: 'pane_d_4',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(166,217,106,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['field_4'] >= 0.466829 && feature.properties['field_4'] <= 0.573693 ) {
+                return {
+                pane: 'pane_d_4',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,192,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['field_4'] >= 0.573693 && feature.properties['field_4'] <= 0.678739 ) {
+                return {
+                pane: 'pane_d_4',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(253,174,97,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['field_4'] >= 0.678739 && feature.properties['field_4'] <= 0.936354 ) {
+                return {
+                pane: 'pane_d_4',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(215,25,28,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_d_4');
+        map.getPane('pane_d_4').style.zIndex = 404;
+        map.getPane('pane_d_4').style['mix-blend-mode'] = 'normal';
+        var layer_d_4 = new L.geoJson(json_d_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_d_4',
+            layerName: 'layer_d_4',
+            pane: 'pane_d_4',
+            onEachFeature: pop_d_4,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_d_4_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_d_4);
+        map.addLayer(layer_d_4);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'d<br /><table><tr><td style="text-align: center;"><img src="legend/d_4_0170340.png" /></td><td>0.17 - 0.34</td></tr><tr><td style="text-align: center;"><img src="legend/d_4_0340471.png" /></td><td>0.34 - 0.47</td></tr><tr><td style="text-align: center;"><img src="legend/d_4_0470572.png" /></td><td>0.47 - 0.57</td></tr><tr><td style="text-align: center;"><img src="legend/d_4_0570683.png" /></td><td>0.57 - 0.68</td></tr><tr><td style="text-align: center;"><img src="legend/d_4_0680944.png" /></td><td>0.68 - 0.94</td></tr></table>': layer_d_4,"矢量注记": layer__3,"矢量底图": layer__2,"影像注记": layer__1,"影像底图": layer__0,}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
